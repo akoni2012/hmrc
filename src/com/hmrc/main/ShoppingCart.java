@@ -14,17 +14,30 @@ public class ShoppingCart {
 		if(fruits.size()==0){
 			return null;
 		}
-		double cost=0.0;
+		double appleCost=0.0;
+		double orangeCost=0.0;
+		int appleCount=0;
+		int orangeCount=0;
 		for(int i=0; i<fruits.size(); i++){
 			if(((String)fruits.get(i)).equalsIgnoreCase("Apple"))
-				cost+=APPLE_PRICE;
+				appleCount++;
 			else if(((String)fruits.get(i)).equalsIgnoreCase("Orange"))
-				cost+=ORANGE_PRICE;
+				orangeCount++;
 			else
 				return "incorrect Entry. Try again: 'Apples or Oranges' ";
 		}
+		if (appleCount%2 ==0)
+			appleCost=APPLE_PRICE*appleCount/2;
+		else
+			appleCost=APPLE_PRICE*(appleCount/2 + (appleCount%2));
+		
+		if (orangeCount%3 ==0)
+			orangeCost=ORANGE_PRICE*orangeCount*2/3;
+		else
+			orangeCost=ORANGE_PRICE*(orangeCount/3 + (orangeCount%3));
+		
 		NumberFormat formatter = new DecimalFormat("#0.00");
-		return "£" + String.valueOf(formatter.format(cost/100.0));
+		return "£" + String.valueOf(formatter.format((appleCost+orangeCost)/100.0));
 	}
 
 }

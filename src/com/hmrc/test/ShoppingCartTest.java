@@ -24,9 +24,16 @@ public class ShoppingCartTest {
 	public void testSimpleAddition() {
 		String[] fr = {"Apple", "Apple", "Orange", "Apple"};
 		List<String> fruits = new ArrayList<String>(Arrays.asList(fr));
-		assertEquals("£2.05", cart.checkout(fruits));
+		assertEquals("£1.45", cart.checkout(fruits));
 	}
 
+	@Test
+	public void testFruitCombo() {
+		String[] fr = {"Apple", "Apple", "Orange", "Apple", "Orange", "Apple", "Orange", "Apple"};
+		List<String> fruits = new ArrayList<String>(Arrays.asList(fr));
+		assertEquals("£2.30", cart.checkout(fruits));
+	}
+	
 	@Test
 	public void testNonsense() {
 		String[] fr = {"Ape", "Ale", "Orge", "Ape"};
@@ -38,7 +45,7 @@ public class ShoppingCartTest {
 	public void testDecimalPlacesAccuracy() {
 		String[] fr = {"Orange", "Apple", "Orange", "Apple"};
 		List<String> fruits = new ArrayList<String>(Arrays.asList(fr));
-		assertEquals("£1.70", cart.checkout(fruits));
+		assertEquals("£1.10", cart.checkout(fruits));
 	}
 
 	@Test
